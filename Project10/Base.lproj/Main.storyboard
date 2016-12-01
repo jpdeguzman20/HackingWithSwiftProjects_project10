@@ -13,10 +13,10 @@
         <scene sceneID="UE7-Fu-wGc">
             <objects>
                 <collectionViewController id="g1W-fN-UWx" customClass="ViewController" customModule="Project10" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ZKf-dX-RSr">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="ZKf-dX-RSr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="t2k-Pc-MRi">
                             <size key="itemSize" width="140" height="180"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -45,6 +45,10 @@
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="imageView" destination="LNV-UK-HBa" id="7CV-zc-ZwS"/>
+                                    <outlet property="name" destination="G51-bh-TWu" id="4Vi-oe-DYx"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
