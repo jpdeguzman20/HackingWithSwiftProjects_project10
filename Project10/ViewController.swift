@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    var people = [Person]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,6 +57,13 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
             // Write the new Data object to the file path we just made.
             try? jpegData.write(to: imagePath)
         }
+        
+        // Create a Person object
+        let person = Person(name: "Unknown", image: imageName)
+        // Put it inside our people array
+        people.append(person)
+        // Reload the collection view to show the new object
+        collectionView?.reloadData()
         
         dismiss(animated: true)
     }
