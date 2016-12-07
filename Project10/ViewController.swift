@@ -16,6 +16,12 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
+        
+        let defaults = UserDefaults.standard
+        
+        if let savedPeople = defaults.object(forKey: "people") as? Data {
+            people = NSKeyedUnarchiver.unarchiveObject(with: savedPeople) as! [Person]
+        }
     }
     
     // collectionView(_:numberOfItemsInSection:) must return an integer and tell the collection view how many items you want to show in its grid. Here, we want to match the number of people we have entered.
@@ -62,8 +68,10 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
             let newName = ac.textFields![0]
             person.name = newName.text!
             
-            // Update the collection view
+            // Update the collection view. Self is required because we're inside a closure.
             self.collectionView?.reloadData()
+            
+            self.save()
         })
         
         present(ac, animated: true)
@@ -106,12 +114,23 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         collectionView?.reloadData()
         
         dismiss(animated: true)
+        
+        save()
     }
     
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
         return documentsDirectory
+    }
+    
+    func save() {
+        // Convert the people array into a Data object
+        let savedData = NSKeyedArchiver.archivedData(withRootObject: people)
+        
+        // Save the data object to UserDefaults
+        let defaults = UserDefaults.standard
+        defaults.set(savedData, forKey: "people")
     }
     
 }
